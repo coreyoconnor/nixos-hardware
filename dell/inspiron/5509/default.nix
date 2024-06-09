@@ -1,7 +1,7 @@
 { lib, ... }:
 {
   imports = [
-    ../../../common/cpu/intel
+    ../../../common/cpu/intel/tiger-lake
     ../../../common/pc/laptop
     ../../../common/pc/ssd
   ];
@@ -13,8 +13,8 @@
   services.thermald.enable = lib.mkDefault true;
 
   # Touchpad
-  services.xserver = {
-    libinput.touchpad.tapping = true;
-    libinput.touchpad.tappingDragLock = true;
+  services.libinput.touchpad = {
+    tapping = true;
+    tappingDragLock = true;
   };
 }
