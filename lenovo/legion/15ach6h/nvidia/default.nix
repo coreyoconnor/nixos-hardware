@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, options, ... }:
 
 {
   imports = [ ../hybrid ];
@@ -9,18 +9,11 @@
   # because when writing the specialization of Dual-Direct GFX, I did not completely
   # remove all packages for amd igpu. I only removed amdgpu from
   # services.xserver.videoDrivers by overriding. This is because the specialization
-  # of nix cannot implement such an operation as canceling an import. In the end, if
-  # it is enabled in Dual-Direct GFX In the absence of amd igpu, the amdvlk package
-  # caused the proton to crash. In order to solve this problem, I add the option of
-  # whether to enable amdvlk to the configuration file of amd gpu, and open it by
-  # default, and turn it off in specialization, so as to delete amdvlk package and
-  # other packages for amd igpu in specialization. At the same time, I also added an
-  # option to amdgpu's opencl runtime.
+  # of nix cannot implement such an operation as canceling an import.
   hardware = {
     nvidia.prime.offload.enable = false;
-    amdgpu = {
-      amdvlk = false;
-      opencl = false;
-    };
+  } // lib.optionalAttrs (options ? amdgpu.opencl.enable) {
+    # introduced in https://github.com/NixOS/nixpkgs/pull/319865
+    amdgpu.opencl.enable = lib.mkDefault false;
   };
 }
