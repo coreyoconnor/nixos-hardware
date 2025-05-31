@@ -2,9 +2,8 @@
 
 {
   imports = [
-    ../../../common/pc/laptop/ssd
-    ../../../common/cpu/intel
-    ../../../common/gpu/intel/comet-lake
+    ../../../common/pc/ssd
+    ../../../common/cpu/intel/comet-lake
     ../../../common/gpu/nvidia/prime.nix
     ../../../common/gpu/nvidia/turing
     ../../../common/pc/laptop

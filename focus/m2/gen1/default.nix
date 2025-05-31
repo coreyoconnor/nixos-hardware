@@ -6,8 +6,7 @@
     ../../../common/gpu/nvidia/prime.nix
     ../../../common/gpu/nvidia/turing
     ../../../common/pc/laptop
-    ../../../common/pc/laptop/acpi_call.nix
-    ../../../common/pc/laptop/ssd
+    ../../../common/pc/ssd
   ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];

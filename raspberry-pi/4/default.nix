@@ -8,6 +8,7 @@
     ./cpu-revision.nix
     ./digi-amp-plus.nix
     ./dwc2.nix
+    ./gpio.nix
     ./i2c.nix
     ./leds.nix
     ./modesetting.nix
@@ -17,6 +18,7 @@
     ./pwm0.nix
     ./tc358743.nix
     ./touch-ft5406.nix
+    ./tv-hat.nix
     ./xhci.nix
   ];
 

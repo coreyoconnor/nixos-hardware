@@ -3,7 +3,7 @@
 {
   imports = [
     ../.
-    ../../../common/pc/laptop/ssd
+    ../../../common/pc/ssd
     "${modulesPath}/hardware/network/broadcom-43xx.nix"
   ];
 
@@ -16,7 +16,10 @@
     # https://bugzilla.kernel.org/show_bug.cgi?id=101681#c116.
     # Also brcmfmac could randomly crash on resume from sleep.
     powerUpCommands = lib.mkBefore "${pkgs.kmod}/bin/modprobe brcmfmac";
-    powerDownCommands = lib.mkBefore "${pkgs.kmod}/bin/rmmod brcmfmac";
+    powerDownCommands = lib.mkBefore ''
+      ${pkgs.kmod}/bin/rmmod -f -v brcmfmac_wcc 2>/dev/null || true
+      ${pkgs.kmod}/bin/rmmod brcmfmac
+      '';
   };
 
   # USB subsystem wakes up MBP right after suspend unless we disable it.

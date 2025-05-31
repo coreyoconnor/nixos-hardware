@@ -1,8 +1,7 @@
 { ... }: {
   imports = [
     ../.
-    ../../../common/pc/laptop/acpi_call.nix
-    ../../../common/pc/laptop/ssd
+    ../../../common/pc/ssd
   ];
 
   # Somehow psmouse does not load automatically on boot for me

@@ -6,11 +6,9 @@
 }: {
   imports = [
     ../.
-    ../../../common/gpu/intel/kaby-lake
-    ../../../common/gpu/intel
+    ../../../common/cpu/intel/kaby-lake
     ../../../common/hidpi.nix
-    ../../../common/pc/laptop/ssd
-    ../../../common/pc/laptop/acpi_call.nix
+    ../../../common/pc/ssd
   ];
 
   # Make the keyboard work in stage1, enable iommu
@@ -42,9 +40,9 @@
     AttrKeyboardIntegration=internal
   '';
 
-  # Wifi, CPU Microcode FW updates 
+  # Wifi, CPU Microcode FW updates
   networking.enableB43Firmware = lib.mkDefault true;
-  hardware = { 
+  hardware = {
     enableRedistributableFirmware = lib.mkDefault true;
     cpu.intel.updateMicrocode = lib.mkDefault true;
   };

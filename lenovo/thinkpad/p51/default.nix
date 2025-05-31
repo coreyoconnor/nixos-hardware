@@ -3,9 +3,7 @@
     ../../../common/gpu/24.05-compat.nix
     ../../../common/gpu/nvidia/prime.nix
     ../../../common/gpu/nvidia/maxwell
-    ../../../common/cpu/intel
-    ../../../common/gpu/intel/kaby-lake
-    ../../../common/pc/laptop/acpi_call.nix
+    ../../../common/cpu/intel/kaby-lake
     ../.
   ];
 

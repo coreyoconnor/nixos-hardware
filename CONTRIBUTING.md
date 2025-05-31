@@ -42,22 +42,12 @@ Link the profile in the table in README.md and in flake.nix.
 
 ## 3. Testing
 
-Run ./tests/run.py to test building. The test script script will parse all the
-profiles from the README.md.
-
-You can also just specify a single profile like this:
-
-```
- ./tests/run.py '<nixos-hardware/purism/librem/15v3>'
-```
-
+Run `nix run ./tests#run .` to evaluate all hardware profiles.
 Because profiles can only be tested with the appropriate hardware, quality
 assurance is up to *you*.
 
 # For reviewers:
 
-This repository has bors enabled for easier merging after a successfull build:
+This repository has [mergify](https://mergify.com/) enabled for easier merging after a successfull build:
 
-* `bors try` - check if the PR builds.
-* `bors merge` - same as `bors try` but will also merge the PR if it builds successfully.
-* https://bors.tech/documentation/
+* `@mergify queue` will add the current pull request to the merge queue and merge when all tests succeed
