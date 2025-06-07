@@ -83,7 +83,11 @@
         dell-latitude-e7240 = import ./dell/latitude/e7240;
         dell-optiplex-3050 = import ./dell/optiplex/3050;
         dell-poweredge-r7515 = import ./dell/poweredge/r7515;
-        dell-precision-3490 = import ./dell/precision/3490;
+        dell-precision-3490 =
+          deprecated "1491" "dell-precision-3490"
+            (import ./dell/precision/3490);
+        dell-precision-3490-nvidia = import ./dell/precision/3490/nvidia;
+        dell-precision-3490-intel = import ./dell/precision/3490/intel;
         dell-precision-3541 = import ./dell/precision/3541;
         dell-precision-5490 = import ./dell/precision/5490;
         dell-precision-5530 = import ./dell/precision/5530;
@@ -200,6 +204,7 @@
         lenovo-thinkpad-p14s-amd-gen2 = import ./lenovo/thinkpad/p14s/amd/gen2;
         lenovo-thinkpad-p14s-amd-gen3 = import ./lenovo/thinkpad/p14s/amd/gen3;
         lenovo-thinkpad-p14s-amd-gen4 = import ./lenovo/thinkpad/p14s/amd/gen4;
+        lenovo-thinkpad-p14s-amd-gen5 = import ./lenovo/thinkpad/p14s/amd/gen5;
         lenovo-thinkpad-p14s-intel-gen3 = import ./lenovo/thinkpad/p14s/intel/gen3;
         lenovo-thinkpad-p14s-intel-gen5 = import ./lenovo/thinkpad/p14s/intel/gen5;
         lenovo-thinkpad-p16s-amd-gen1 = import ./lenovo/thinkpad/p16s/amd/gen1;

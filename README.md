@@ -143,7 +143,8 @@ See code for all available configurations.
 | [Dell Latitude E7240](dell/latitude/e7240)                                        | `<nixos-hardware/dell/latitude/e7240>`                  |
 | [Dell Optiplex 3050](dell/optiplex/3050)                                          | `<nixos-hardware/dell/optiplex/3050>`                   |
 | [Dell Poweredge R7515](dell/poweredge/r7515)                                      | `<nixos-hardware/dell/poweredge/r7515>`                 |
-| [Dell Precision 3490](dell/precision/3490)                                        | `<nixos-hardware/dell/precision/3490>`                  |
+| [Dell Precision 3490, nvidia](dell/precision/3490/nvidia)                         | `<nixos-hardware/dell/precision/3490/nvidia>`           |
+| [Dell Precision 3490, intel](dell/precision/3490/intel)                           | `<nixos-hardware/dell/precision/3490/intel>`            |
 | [Dell Precision 3541](dell/precision/3541)                                        | `<nixos-hardware/dell/precision/3541>`                  |
 | [Dell Precision 5490](dell/precision/5490)                                        | `<nixos-hardware/dell/precision/5490>`                  |
 | [Dell Precision 5530](dell/precision/5530)                                        | `<nixos-hardware/dell/precision/5530>`                  |
@@ -256,6 +257,7 @@ See code for all available configurations.
 | [Lenovo ThinkPad P14s AMD Gen 2](lenovo/thinkpad/p14s/amd/gen2)                   | `<nixos-hardware/lenovo/thinkpad/p14s/amd/gen2>`        |
 | [Lenovo ThinkPad P14s AMD Gen 3](lenovo/thinkpad/p14s/amd/gen3)                   | `<nixos-hardware/lenovo/thinkpad/p14s/amd/gen3>`        |
 | [Lenovo ThinkPad P14s AMD Gen 4](lenovo/thinkpad/p14s/amd/gen4)                   | `<nixos-hardware/lenovo/thinkpad/p14s/amd/gen4>`        |
+| [Lenovo ThinkPad P14s AMD Gen 5](lenovo/thinkpad/p14s/amd/gen5)                   | `<nixos-hardware/lenovo/thinkpad/p14s/amd/gen5>`        |
 | [Lenovo ThinkPad P14s Intel Gen 3](lenovo/thinkpad/p14s/intel/gen3)               | `<nixos-hardware/lenovo/thinkpad/p14s/intel/gen3>`      |
 | [Lenovo ThinkPad P14s Intel Gen 5](lenovo/thinkpad/p14s/intel/gen5)               | `<nixos-hardware/lenovo/thinkpad/p14s/intel/gen5>`      |
 | [Lenovo ThinkPad P16s AMD Gen 1](lenovo/thinkpad/p16s/amd/gen1)                   | `<nixos-hardware/lenovo/thinkpad/p16s/amd/gen1>`        |
