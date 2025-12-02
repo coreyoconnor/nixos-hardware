@@ -2,12 +2,11 @@
 
 let
   cfg = config.hardware.raspberry-pi."4".poe-hat;
-in {
+in
+{
   options.hardware = {
     raspberry-pi."4".poe-hat = {
-      enable = lib.mkEnableOption ''
-        support for the Raspberry Pi POE Hat.
-      '';
+      enable = lib.mkEnableOption "support for the Raspberry Pi POE Hat";
     };
   };
 

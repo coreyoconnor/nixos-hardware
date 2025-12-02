@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 
 {
   imports = [
@@ -26,11 +31,15 @@
     kernelPackages = lib.mkDefault pkgs.linuxKernel.packages.linux_rpi4;
     initrd.availableKernelModules = [
       "usbhid"
-      "usb_storage"
+      "usb-storage"
       "vc4"
-      "pcie_brcmstb" # required for the pcie bus to work
+      "pcie-brcmstb" # required for the pcie bus to work
       "reset-raspberrypi" # required for vl805 firmware to load
-    ];
+    ]
+    ++ lib.optional config.boot.initrd.network.enable "genet";
+
+    # Allow building kernel
+    initrd.systemd.tpm2.enable = false;
 
     loader = {
       grub.enable = lib.mkDefault false;
@@ -40,7 +49,6 @@
 
   hardware.deviceTree.filter = lib.mkDefault "bcm2711-rpi-*.dtb";
 
-
   assertions = [
     {
       assertion = (lib.versionAtLeast config.boot.kernelPackages.kernel.version "6.1");
@@ -48,6 +56,5 @@
     }
   ];
 
-  # Required for the Wireless firmware
-  hardware.enableRedistributableFirmware = true;
+  hardware.firmware = [ pkgs.raspberrypiWirelessFirmware ];
 }

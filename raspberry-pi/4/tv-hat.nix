@@ -2,12 +2,11 @@
 
 let
   cfg = config.hardware.raspberry-pi."4".tv-hat;
-in {
+in
+{
   options.hardware = {
     raspberry-pi."4".tv-hat = {
-      enable = lib.mkEnableOption ''
-        support for the Raspberry Pi TV Hat.
-      '';
+      enable = lib.mkEnableOption "support for the Raspberry Pi TV Hat";
     };
   };
   config = lib.mkIf cfg.enable {
@@ -21,7 +20,7 @@ in {
         dtsText = "
         /dts-v1/;
         /plugin/;
-    
+
         /{
           compatible = \"brcm,bcm2711\";
           fragment@0 {

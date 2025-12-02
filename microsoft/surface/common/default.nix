@@ -1,65 +1,64 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
-  inherit (lib) mkDefault mkOption types versions;
+  inherit (lib)
+    mkDefault
+    mkOption
+    types
+    versions
+    ;
 
   # Set the version and hash for the kernel sources
-  srcVersion = with config.hardware.microsoft-surface;
+  srcVersion =
+    with config.hardware.microsoft-surface;
     if kernelVersion == "longterm" then
       "6.12.19"
     else if kernelVersion == "stable" then
-      "6.14.2"
+      "6.15.9"
     else
       abort "Invalid kernel version: ${kernelVersion}";
 
-  srcHash = with config.hardware.microsoft-surface;
+  srcHash =
+    with config.hardware.microsoft-surface;
     if kernelVersion == "longterm" then
       "sha256-1zvwV77ARDSxadG2FkGTb30Ml865I6KB8y413U3MZTE="
     else if kernelVersion == "stable" then
-      "sha256-xcaCo1TqMZATk1elfTSnnlw3IhrOgjqTjhARa1d6Lhs="
+      "sha256-6U86+FSSMC96gZRBRY+AvKCtmRLlpMg8aZ/zxjxSlX0="
     else
       abort "Invalid kernel version: ${kernelVersion}";
 
-  # Set the version and hash for the linux-surface releases
-  pkgVersion = with config.hardware.microsoft-surface;
-    if kernelVersion == "longterm" then
-      "6.12.7"
-    else if kernelVersion == "stable" then
-      "6.14.2"
-    else
-      abort "Invalid kernel version: ${kernelVersion}";
-  
-  pkgHash = with config.hardware.microsoft-surface;
-    if kernelVersion == "longterm" then
-      "sha256-Pv7O8D8ma+MPLhYP3HSGQki+Yczp8b7d63qMb6l4+mY="
-    else if kernelVersion == "stable" then
-      "sha256-Pzn+C52TtDcqDVepM5z2cVNCsnRDy0Wwn+FLwgsuicQ="
-    else
-      abort "Invalid kernel version: ${kernelVersion}";
+  # Fetch the latest linux-surface patches
+  linux-surface = pkgs.fetchFromGitHub {
+    owner = "linux-surface";
+    repo = "linux-surface";
+    rev = "50d0ed6be462a5fdb643cfe8469bf69158afae42";
+    hash = "sha256-VEoZH3dFsLn9GnUyjnbOoJeTRM3KEQ9fhlMk03NXoXs=";
+  };
 
-  # Fetch the linux-surface package
-  repos = pkgs.callPackage ({ fetchFromGitHub, rev, hash }: {
-    linux-surface = fetchFromGitHub {
-      owner = "linux-surface";
-      repo = "linux-surface";
-      rev = rev;
-      hash = hash;
-    };
-  }) { hash = pkgHash; rev = "arch-${pkgVersion}-1"; };
-
-  # Fetch and build the kernel package
-  inherit (pkgs.callPackage ./kernel/linux-package.nix { inherit repos; }) linuxPackage surfacePatches;
+  # Fetch and build the kernel
+  inherit (pkgs.callPackage ./kernel/linux-package.nix { })
+    linuxPackage
+    surfacePatches
+    ;
   kernelPatches = surfacePatches {
-    version = pkgVersion;
-    patchFn = ./kernel/${versions.majorMinor pkgVersion}/patches.nix;
+    version = srcVersion;
+    patchFn = ./kernel/${versions.majorMinor srcVersion}/patches.nix;
+    patchSrc = (linux-surface + "/patches/${versions.majorMinor srcVersion}");
   };
   kernelPackages = linuxPackage {
-    inherit kernelPatches; version = srcVersion;
+    inherit kernelPatches;
+    version = srcVersion;
     sha256 = srcHash;
-    ignoreConfigErrors=true;
+    ignoreConfigErrors = true;
   };
 
-in {
+in
+{
   options.hardware.microsoft-surface.kernelVersion = mkOption {
     description = "Kernel Version to use (patched for MS Surface)";
     type = types.enum [
